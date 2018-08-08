@@ -163,7 +163,7 @@ public class EditorActivity extends AppCompatActivity implements android.app.Loa
     }
 
     // OnTouchListener that listens for any user touches on a View, implying that they are modifying
-// the view, and we change the mInventoryHasChanged boolean to true.
+    // the view, and we change the mInventoryHasChanged boolean to true.
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
@@ -387,6 +387,14 @@ public class EditorActivity extends AppCompatActivity implements android.app.Loa
         String inventorySupplierName = mSupplierNameEditText.getText().toString().trim();
         String inventorySupplierPhonenumber = mSupplierPhoneNumberEditText.getText().toString().trim();
 
+        //Checking for NULL values
+        if (inventoryProductName.equals("") || inventoryQuantityString.equals("") || inventoryPriceString.equals("")
+                || inventorySupplierName.equals("") || inventorySupplierPhonenumber.equals("")) {
+            Toast.makeText(this, getString(R.string.all_data_required),
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         if (currentInventoryUri == null &&
                 TextUtils.isEmpty(inventoryProductName) &&
                 TextUtils.isEmpty(inventorySupplierName) &&
@@ -395,6 +403,7 @@ public class EditorActivity extends AppCompatActivity implements android.app.Loa
                 TextUtils.isEmpty(inventorySupplierPhonenumber)) {
             return;
         }
+
         ContentValues values = new ContentValues();
         values.put(InventoryEntry.COLUMN_INVENTORY_PRODUCT_NAME, inventoryProductName);
         values.put(InventoryEntry.COLUMN_INVENTORY_SUPPLIER_NAME, inventorySupplierName);

@@ -35,10 +35,11 @@ public class CatalogActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_catalog);
+       setContentView(R.layout.activity_catalog);
 
         // Setup FAB to open EditorActivity
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.bringToFront();
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,7 +49,7 @@ public class CatalogActivity extends AppCompatActivity implements
         });
 
         // Find the ListView which will be populated with the inventory data
-        ListView inventoryListView = (ListView) findViewById(R.id.inventory_listview);
+        ListView inventoryListView = findViewById(R.id.inventory_listview);
 
         // Find and set empty view on the ListView, so that it only shows when the list has 0 items.
         View emptyView = findViewById(R.id.empty_view);
